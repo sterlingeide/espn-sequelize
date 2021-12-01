@@ -14,12 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   NHL.init({
-    team: DataTypes.STRING,
-    conference: DataTypes.STRING,
+    team: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
+    conference: {
+      type: DataTypes.STRING,
+      validate: {isAlpha: true}
+    },
     record: DataTypes.STRING,
-    article: DataTypes.STRING,
-    goalsForPerGame: DataTypes.INTEGER,
-    goalsAgainstPerGame: DataTypes.INTEGER
+    article: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
+    goalsForPerGame: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    },
+    goalsAgainstPerGame: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    }
   }, {
     sequelize,
     modelName: 'NHL',

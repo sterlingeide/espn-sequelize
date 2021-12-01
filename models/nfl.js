@@ -14,12 +14,27 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   NFL.init({
-    team: DataTypes.STRING,
-    division: DataTypes.STRING,
-    article: DataTypes.STRING,
+    team: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
+    division: {
+      type: DataTypes.STRING,
+      validate: {isAlpha: true}
+    },
+    article: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
     record: DataTypes.STRING,
-    passingYards: DataTypes.INTEGER,
-    rushingYards: DataTypes.INTEGER
+    passingYards: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    },
+    rushingYards: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    }
   }, {
     sequelize,
     modelName: 'NFL',

@@ -14,13 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   NBA.init({
-    team: DataTypes.STRING,
-    conference: DataTypes.STRING,
-    article: DataTypes.STRING,
+    team: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
+    conference: {
+      type: DataTypes.STRING,
+      validate: {isAlpha: true}
+    },
+    article: {
+      type: DataTypes.STRING,
+      validate: {isAlphanumeric: true}
+    },
     record: DataTypes.STRING,
-    pointPerGame: DataTypes.INTEGER,
-    reboundsPerGame: DataTypes.INTEGER,
-    assistsPerGame: DataTypes.INTEGER
+    pointPerGame: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    },
+    reboundsPerGame: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    },
+    assistsPerGame: {
+      type: DataTypes.INTEGER,
+      validate: {isInt: true}
+    }
   }, {
     sequelize,
     modelName: 'NBA',
